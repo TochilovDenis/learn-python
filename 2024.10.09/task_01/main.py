@@ -3,5 +3,6 @@ def text_split(s: str, separator: str) -> list[str]:
 
 
 if __name__ == '__main__':
-    print(text_split("Hello Dex", '\n'))
+    text = "Hello Dex"
+    print(text_split(text, '=)'))
 
