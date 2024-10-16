@@ -7,7 +7,13 @@ from string import ascii_lowercase
 
 
 def generate_random_str(n: int) -> str:
-    return ''.join(choice(ascii_lowercase) for _ in range(n))
+    chars = ascii_lowercase
+    result = []
+    for _ in range(n):
+        char = choice(chars)
+        result.append(char)
+    return ''.join(result)
+    # return ''.join(choice(ascii_lowercase) for _ in range(n))
 
 if __name__ == '__main__':
     print(generate_random_str(10))
