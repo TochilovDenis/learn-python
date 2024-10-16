@@ -14,15 +14,15 @@ def generate_random_str(n: int, use_uppercase: bool = False, use_digits = False,
     result: list = []
 
     for _ in range(n):
+        if use_uppercase:
+            chars += ascii_uppercase
+        if use_digits:
+            chars += digits
+        if use_punctuation:
+            chars += punctuation
+
         char = choice(chars)
         result.append(char)
-
-    if use_uppercase:
-        chars += ascii_uppercase
-    if use_digits:
-        chars += digits
-    if use_punctuation:
-        chars += punctuation
 
     if allow_duplicates:
         return ''.join(sample(chars, n))
@@ -31,6 +31,7 @@ def generate_random_str(n: int, use_uppercase: bool = False, use_digits = False,
 
 
 if __name__ == '__main__':
+    print(generate_random_str(10))
     print(generate_random_str(10, use_uppercase=True))
     print(generate_random_str(10, use_uppercase=True, use_digits=True))
     print(generate_random_str(10, use_uppercase=True, use_punctuation=True))
