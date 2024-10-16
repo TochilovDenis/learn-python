@@ -5,29 +5,24 @@
 И если не разрешены, то нельзя допускать повторяющихся символов в строке.
 """
 
-from random import choice, sample
+from random import choices, sample
 from string import ascii_lowercase, ascii_uppercase, digits, punctuation
 
 
-def generate_random_str(n: int, use_uppercase: bool = False, use_digits = False, use_punctuation = False, allow_duplicates = False) -> str:
+def generate_random_str(n: int, use_uppercase: bool = False, use_digits = False, use_punctuation = False, use_duplicates = False) -> str:
     chars: str = ascii_lowercase
-    result: list = []
 
-    for _ in range(n):
-        if use_uppercase:
-            chars += ascii_uppercase
-        if use_digits:
-            chars += digits
-        if use_punctuation:
-            chars += punctuation
+    if use_uppercase:
+        chars += ascii_uppercase
+    if use_digits:
+        chars += digits
+    if use_punctuation:
+        chars += punctuation
 
-        char = choice(chars)
-        result.append(char)
+    if use_duplicates:
+        return ''.join(sample(population=chars, k=n))
 
-    if allow_duplicates:
-        return ''.join(sample(chars, n))
-
-    return ''.join(result)
+    return ''.join(choices(population=chars, k=n))
 
 
 if __name__ == '__main__':
@@ -35,4 +30,4 @@ if __name__ == '__main__':
     print(generate_random_str(10, use_uppercase=True))
     print(generate_random_str(10, use_uppercase=True, use_digits=True))
     print(generate_random_str(10, use_uppercase=True, use_punctuation=True))
-    print(generate_random_str(10, use_uppercase=True, allow_duplicates=True))
+    print(generate_random_str(10, use_uppercase=True, use_punctuation=True, use_duplicates=True))
