@@ -5,7 +5,7 @@
 Заглавные должны добавляться в строку только если параметр use_uppercase в функции равен True.
 А если параметр use_uppercase не указан при использовании функции, то генерируем строку только из строчных букв.
 """
-from random import choice
+from random import choices
 from string import ascii_lowercase, ascii_uppercase
 
 
@@ -13,7 +13,7 @@ def generate_random_str(n: int, use_uppercase: bool = False) -> str:
     chars: str = ascii_lowercase
     if use_uppercase:
         chars += ascii_uppercase
-    return ''.join(choice(chars) for _ in range(n))
+    return ''.join(choices(population=ascii_lowercase, k=n))
 
 if __name__ == '__main__':
     print(generate_random_str(10, True))
