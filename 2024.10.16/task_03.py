@@ -9,7 +9,7 @@
 По тому же сценарию добавляем контроль использования цифр и символов
 """
 
-from random import choice
+from random import choices
 from string import ascii_lowercase, ascii_uppercase, digits, punctuation
 
 
@@ -22,7 +22,7 @@ def generate_random_str(n: int, use_uppercase: bool = False, use_digits = False,
     if use_punctuation:
         chars += punctuation
 
-    return ''.join(choice(chars) for _ in range(n))
+    return ''.join(choices(population=chars, k=n))
 
 if __name__ == '__main__':
     print(generate_random_str(10, use_uppercase=True))
