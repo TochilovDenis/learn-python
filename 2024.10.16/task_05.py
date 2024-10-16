@@ -24,32 +24,44 @@ class RandomGenerator:
 
 
     def get_string(self) -> str:
-        chars_to_use: list[str] = [self.chars]
         if self.use_uppercase:
-            chars_to_use.append(ascii_uppercase)
+            self.chars += ascii_uppercase
         if self.use_digits:
-            chars_to_use.append(digits)
+            self.chars += digits
         if self.use_punctuation:
-            chars_to_use.append(punctuation)
+            self.chars += punctuation
 
         if self.allow_duplicates:
-            return ''.join(sample(''.join(chars_to_use), self.n))
+            return ''.join(sample(self.chars, self.n))
 
         result = []
         for _ in range(self.n):
-            char = choice(''.join(chars_to_use))
+            char = choice(''.join(self.chars))
             result.append(char)
+
         return ''.join(result)
+
+    def get_lowercase(self) -> str:
+        return self.get_string()
+
+    def get_uppercase(self) -> str:
+        return self.get_string()
+
+    def get_digits(self) -> str:
+        return self.get_string()
+
+    def get_punctuation(self) -> str:
+        return self.get_string()
 
 
 if __name__ == '__main__':
-    rg = RandomGenerator(10)
-    print(rg.get_string())
-    rg = RandomGenerator(10, use_uppercase=True)
-    print(rg.get_string())
-    rg = RandomGenerator(10, use_uppercase=True, use_digits=True)
-    print(rg.get_string())
-    rg = RandomGenerator(10, use_uppercase=True, use_punctuation=True)
-    print(rg.get_string())
-    rg = RandomGenerator(10, use_uppercase=True, allow_duplicates=True)
-    print(rg.get_string())
+    generator = RandomGenerator(10)
+    print(generator.get_string())
+    generator = RandomGenerator(10, use_uppercase=True)
+    print(generator.get_lowercase())
+    generator = RandomGenerator(10, use_uppercase=True, use_digits=True)
+    print(generator.get_uppercase())
+    generator = RandomGenerator(10, use_uppercase=True, use_punctuation=True)
+    print(generator.get_digits())
+    generator = RandomGenerator(10, use_uppercase=True, use_digits=True, use_punctuation=True, allow_duplicates=True)
+    print(generator.get_punctuation())
