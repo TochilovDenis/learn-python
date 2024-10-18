@@ -1,11 +1,19 @@
 import requests  # импорт библиотеки requests
 
-url = 'https://date.nager.at/api/v3/AvailableCountries' # создал и инициировал переменную url
-payload = {
-    'countryCode': '',
-    'name': ''
-}
-res = requests.get(url, params=payload)
-data = res.text
+def  get_list_of_available_countries() -> list[dict[str, str]]:
+    url = 'https://date.nager.at/api/v3/AvailableCountries'
+    res = requests.get(url).json()
+    return res
 
-print(data)
+def main() -> None:
+    countries = get_list_of_available_countries()
+    for country in countries:
+        if country['name'] == 'Russia':
+            print(f"Страна Russia, код [{country['countryCode']}]")
+            return
+
+    print('Страна Russia не найдена')
+
+
+if __name__ == '__main__':
+    main()
