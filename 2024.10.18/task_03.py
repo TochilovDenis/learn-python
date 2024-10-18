@@ -1,7 +1,7 @@
 import requests  # импорт библиотеки requests
 
 LANG: dict[int, str] = {0: 'ru', 1: 'en'}
-choice_lang = int(input("Выбор(0-ru, 1-en): "))
+choice_lang = int(input("На каком языке вы хотите цитату? выбор: 0 - Русский | 1 - Английский -> "))
 
 url = 'http://api.forismatic.com/api/1.0/' # создал и инициировал переменную url
 payload = {                 # уточнённые настройки нашего запроса
