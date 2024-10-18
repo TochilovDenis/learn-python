@@ -7,9 +7,14 @@ def  get_list_of_available_countries() -> list[dict[str, str]]:
 
 def main() -> None:
     countries = get_list_of_available_countries()
+    result: dict = {}
     for country in countries:
-        print(country['name'],  country['countryCode'])
+        result[country['name']] = country['countryCode']
 
+    if 'Russia' in result:
+        print(f'Страна Russia, код [{result["Russia"]}]')
+    else:
+        print(f"Страна Russia не найдена")
 
 if __name__ == '__main__':
     main()
